@@ -1,0 +1,17 @@
+.post-color.components-panel__body {
+  .components-base-control + .components-base-control {
+    margin-top: 24px;
+  }
+
+  .components-base-control__label .component-color-indicator {
+    vertical-align: text-bottom;
+
+    &:not([style*="background"]) {
+      display: none;
+    }
+  }
+
+  .components-circular-option-picker {
+    margin-top: 13px;
+  }
+}
