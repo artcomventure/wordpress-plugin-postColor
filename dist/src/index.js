@@ -129,5 +129,6 @@ const PostColorPanel = () => {
 };
 
 registerPlugin( 'post-color', {
-    render: PostColorPanel
+    render: PostColorPanel,
+    icon: 'art'
 } );

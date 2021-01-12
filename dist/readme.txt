@@ -43,8 +43,13 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 == Questions, concerns, needs, suggestions? ==
 
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
-
 == Changelog ==
+
+= 1.0.1 - 2021-01-12 =
+**Fixed**
+
+* Gutenberg panel icon.
+* _Temporally_ fix of https://wordpress.org/support/topic/gutenberg-updating-failed-with-custom-post-meta/
 
 = 1.0.0 - 2021-01-12 =
 
