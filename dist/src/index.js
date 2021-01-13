@@ -42,20 +42,24 @@ const getPostColors = ( scope, color ) => {
     return colors[scope]||[];
 }
 
-const PostColorField = ( props ) => {
-    // current color
-    const color = props.color||props[props.scope];
-
-    const sheet_id = 'post-color-' + props.scope + '-sheet';
+const changeEditorStyle = ( color, scope ) => {
+    const sheet_id = 'post-color-' + scope + '-sheet';
     let $sheet = document.getElementById( sheet_id );
     if ( $sheet ) $sheet.parentNode.removeChild( $sheet );
     if ( !!color ) {
         $sheet = document.createElement('style' );
         $sheet.id = sheet_id;
-        $sheet.innerHTML = '.edit-post-visual-editor { ' + (props.scope === 'background' ? 'background-' : '') + 'color: ' + color + '; }';
-        // if ( props.scope === 'text' ) $sheet.innerHTML += "\n.edit-post-visual-editor textarea { color: " + color + " !important; }";
+        $sheet.innerHTML = '.edit-post-visual-editor { ' + (scope === 'background' ? 'background-' : '') + 'color: ' + color + '; }';
+        // if ( scope === 'text' ) $sheet.innerHTML += "\n.edit-post-visual-editor textarea { color: " + color + " !important; }";
         document.body.appendChild( $sheet );
     }
+}
+
+const PostColorField = ( props ) => {
+    // current color
+    const color = props.color||props[props.scope];
+
+    changeEditorStyle( color, props.scope );
 
     return (
         <BaseControl id={ "post-color-" + props.scope }>
@@ -70,19 +74,21 @@ const PostColorField = ( props ) => {
                     props.setState( { color } )
                     props.updateMeta( color, props.scope )
                 }}
-                disableCustomColors={ !!settings.custom }
+                disableCustomColors={ !settings.custom }
             />
         </BaseControl>
     )
 }
 
+const getEditedPostColors = () => ( {
+    background: '',
+    text: '',
+    ...useSelect( ( select ) => select('core/editor').getEditedPostAttribute( 'meta' )['_post-color']||{} )
+} )
+
 const PostColorControl = compose( [
     withState(),
-    withSelect( ( select ) => ( {
-        background: '',
-        text: '',
-        ...useSelect( ( select ) => select('core/editor').getEditedPostAttribute( 'meta' )['_post-color']||{} )
-    } ) ),
+    withSelect( getEditedPostColors ),
     withDispatch( ( dispatch ) => ( {
         updateMeta( value, prop ) {
             // make sure all meta props are defined
@@ -104,17 +110,25 @@ const PostColorControl = compose( [
 ] )( PostColorField );
 
 const PostColorPanel = () => {
-    // if ( settings['post-types'].length ) {
-    //     const postType = select( 'core/editor' ).getCurrentPostType();
-    //     if ( settings['post-types'].indexOf( postType ) < 0 ) {
-    //         return '';
-    //     }
-    //
-    //     // neither editor can set individual colors nor any colors are defined in settings
-    //     if ( !settings.custom && !settings.background.length && !settings.text.length ) {
-    //         return '';
-    //     }
-    // }
+    // get post colors
+    const colors = getEditedPostColors();
+
+    const postType = select( 'core/editor' ).getCurrentPostType();
+    // post colors are disabled for _this_ post type
+    if ( settings['post-types'].length && settings['post-types'].indexOf( postType ) < 0 ) {
+        return '';
+    }
+
+    // neither editor can set individual colors nor any colors are defined in settings
+    if ( !Object.values( colors ).filter( ( color ) => color ).length && !settings.custom && !settings.background.length && !settings.text.length ) {
+        return '';
+    }
+
+    // set editor colors initially
+    // important in case panel is not opened
+    ['background', 'text'].forEach( ( scope ) => {
+        changeEditorStyle( colors[scope], scope )
+    } )
 
     return (
         <PluginDocumentSettingPanel

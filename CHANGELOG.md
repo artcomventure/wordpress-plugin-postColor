@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2 - 2021-01-13
+**Fixed**
+
+* Initial editor color styles (with closed panel).
+* Apply panel visibility settings.
+
 ## 1.0.1 - 2021-01-12
 **Fixed**
 

@@ -23,7 +23,7 @@ function post_color_register() {
     );
 
     register_block_type(
-        'znovu/post-color',
+        'acv/post-color',
         array(
             'editor_script' => 'post-color-js',
             'editor_style' => 'post-color-css',

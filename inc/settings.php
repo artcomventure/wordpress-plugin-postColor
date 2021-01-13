@@ -27,6 +27,7 @@ add_action( 'admin_menu', 'post_color_add_settings_page' );
  */
 function post_color_settings() {
 	$settings = get_option( 'post-color', array() );
+	if ( !is_array( $settings ) ) $settings = array();
 
 	$settings += array(
 		'post-types' => [],
