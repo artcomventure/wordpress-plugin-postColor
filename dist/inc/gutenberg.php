@@ -30,30 +30,30 @@ function post_color_register() {
         )
     );
 
-    register_post_meta(
-        'page',
-        '_post-color',
-        array(
-            'show_in_rest'  => array(
-                'schema' => array(
-                    'type' => 'object',
-                    'properties' => array(
-                        'background' => array(
-                            'type' => 'string',
+	foreach ( post_color_setting('post-types' ) as $post_type )
+        register_post_meta(
+            $post_type->name,
+            '_post-color',
+            array(
+                'show_in_rest'  => array(
+                    'schema' => array(
+                        'type' => 'object',
+                        'properties' => array(
+                            'background' => array(
+                                'type' => 'string',
+                            ),
+                            'text' => array(
+                                'type' => 'string',
+                            )
                         ),
-                        'text' => array(
-                            'type' => 'string',
-                        )
                     ),
                 ),
-            ),
-            'single' => true,
-            'type' => 'object',
-            'auth_callback' => function () {
-                return current_user_can('edit_posts' );
-            }
-        )
-    );
+                'single' => true,
+                'type' => 'object',
+                'auth_callback' => function () {
+                    return current_user_can('edit_posts' );
+                }
+            )
+        );
 }
-
-add_action( 'init', 'post_color_register' );
+add_action( 'init', 'post_color_register', 1982 );

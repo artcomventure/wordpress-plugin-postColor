@@ -43,7 +43,8 @@ gulp.task( 'build', gulp.series( build = (done) => {
         '!package-lock.json',
         '!node_modules{,/**}',
         '!dist{,/**}',
-        '!assets{,/**}'
+        '!assets{,/**}',
+        '!src{,/**}'
     ] ).pipe( gulp.dest( 'dist/' ) );
 
     // collect css files

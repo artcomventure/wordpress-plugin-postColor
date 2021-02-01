@@ -13,9 +13,18 @@ const getPostColors = ( scope, color ) => {
     settings[scope].forEach( ( color ) => addColor( color, scope ) )
 
     // get all posts
-    const posts = useSelect( ( select ) => {
-        return select('core').getEntityRecords( 'postType', 'page' );
-    }, [] )
+    settings['post-types'].forEach( ( post_type ) => {
+        const posts = useSelect( ( select ) => {
+            return select('core').getEntityRecords( 'postType', post_type );
+        }, [] )
+
+        // collect colors
+        if ( posts && posts.length ) posts.forEach( ( post ) => {
+            ['background', 'text'].forEach( ( scope ) => {
+                addColor( post.meta['_post-color'][scope]||'', scope )
+            } )
+        } );
+    } )
 
     function addColor( hex, scope ) {
         // check if color already exists
@@ -28,13 +37,6 @@ const getPostColors = ( scope, color ) => {
             color: hex
         }] )
     }
-
-    // collect colors
-    if ( posts && posts.length ) posts.forEach( ( post ) => {
-        ['background', 'text'].forEach( ( scope ) => {
-            addColor( post.meta['_post-color'][scope]||'', scope )
-        } )
-    } );
 
     // add additional color
     // addColor( color, scope )
@@ -110,14 +112,14 @@ const PostColorControl = compose( [
 ] )( PostColorField );
 
 const PostColorPanel = () => {
-    // get post colors
-    const colors = getEditedPostColors();
-
     const postType = select( 'core/editor' ).getCurrentPostType();
     // post colors are disabled for _this_ post type
-    if ( settings['post-types'].length && settings['post-types'].indexOf( postType ) < 0 ) {
+    if ( settings['post-types'].indexOf( postType ) < 0 ) {
         return '';
     }
+
+    // get post colors
+    const colors = getEditedPostColors();
 
     // neither editor can set individual colors nor any colors are defined in settings
     if ( !Object.values( colors ).filter( ( color ) => color ).length && !settings.custom && !settings.background.length && !settings.text.length ) {

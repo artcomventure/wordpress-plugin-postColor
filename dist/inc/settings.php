@@ -23,9 +23,12 @@ function post_color_add_settings_page() {
 add_action( 'admin_menu', 'post_color_add_settings_page' );
 
 /**
- * Get post-color settings.
+ * Get post-color setting(s).
+ *
+ * @param null $setting
+ * @return mixed
  */
-function post_color_settings() {
+function post_color_settings( $setting = null ) {
 	$settings = get_option( 'post-color', array() );
 	if ( !is_array( $settings ) ) $settings = array();
 
@@ -36,7 +39,25 @@ function post_color_settings() {
 		'custom' => ''
 	);
 
+	if ( !$settings['post-types'] )
+        $settings['post-types'] = array_column( post_color_available_post_types(), 'name' );
+
+	if ( $setting ) {
+		if ( isset($settings[$setting]) ) return $settings[$setting];
+		return null;
+	}
+
 	return $settings;
+}
+
+/**
+ * Get post-color setting.
+ *
+ * @param $setting
+ * @return mixed
+ */
+function post_color_setting( $setting ) {
+	return post_color_settings( $setting );
 }
 
 /**
@@ -46,15 +67,19 @@ function post_color_settings_page() {
 	wp_enqueue_script( 'post-color-settings-js', POST_COLOR_DIRECTORY_URI . 'js/settings.js', array( 'jquery', 'wp-color-picker', 'jquery-ui-slider' ) );
 	wp_enqueue_style( 'post-color-settings-css', POST_COLOR_DIRECTORY_URI . 'css/settings.css', array( 'wp-color-picker' ) );
 
-	$settings = post_color_settings();
-
-	// get all _necessary_ post types
-	$post_types = array_intersect_key(
-		get_post_types( array( 'public' => TRUE ), 'objects' ),
-		array_flip( get_post_types_by_support( array( 'editor' ) ) )
-	);
-
 	include( POST_COLOR_DIRECTORY . 'inc/settings.page.php' );
+}
+
+/**
+ * Get all available post types.
+ */
+function post_color_available_post_types() {
+    $post_types = array_intersect_key(
+        get_post_types( array( 'public' => TRUE ), 'objects' ),
+        array_flip( get_post_types_by_support( array( 'custom-fields' ) ) )
+    );
+
+    return $post_types;
 }
 
 /**

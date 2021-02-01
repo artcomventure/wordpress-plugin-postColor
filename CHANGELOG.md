@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.3 - 2021-02-01
+**Fixed**
+
+* Error with custom post types.
+
 ## 1.0.2 - 2021-01-13
 **Fixed**
 

@@ -1,7 +1,4 @@
-<?php /**
- * @param $settings
- * @param $post_types
-*/ ?>
+<?php $settings = post_color_settings(); ?>
 
 <div class="wrap">
 	<h2><?php _e( 'Post Color Settings', 'post-color' ); ?></h2>
@@ -18,11 +15,12 @@
 				</th>
 				<td>
                     <ul>
-	                    <?php foreach ( $post_types as $post_type ) : ?>
+	                    <?php $post_types = post_color_available_post_types();
+                        foreach ( $post_types as $post_type ) : ?>
                             <li>
                                 <label>
                                     <input type="checkbox" value="<?php echo $post_type->name; ?>" name="post-color[post-types][]"
-                                        <?php checked( true, in_array( $post_type->name, $settings['post-types'] ) ); ?> />
+                                        <?php checked( true, array_diff( array_column( $post_types, 'name' ), $settings['post-types'] ) && in_array( $post_type->name, $settings['post-types'] ) ); ?> />
 	                                <?php echo $post_type->label; ?>
                                 </label>
                             </li>

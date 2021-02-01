@@ -45,6 +45,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
 == Changelog ==
 
+= 1.0.3 - 2021-02-01 =
+**Fixed**
+
+* Error with custom post types.
+
 = 1.0.2 - 2021-01-13 =
 **Fixed**
 
