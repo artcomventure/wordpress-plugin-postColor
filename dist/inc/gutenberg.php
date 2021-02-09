@@ -32,7 +32,7 @@ function post_color_register() {
 
 	foreach ( post_color_setting('post-types' ) as $post_type )
         register_post_meta(
-            $post_type->name,
+            $post_type,
             '_post-color',
             array(
                 'show_in_rest'  => array(

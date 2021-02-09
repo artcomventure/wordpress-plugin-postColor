@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.4 - 2021-02-09
+**Fixed**
+
+* Error register `_post-color` post meta.
+
 ## 1.0.3 - 2021-02-01
 **Fixed**
 
