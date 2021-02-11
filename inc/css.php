@@ -4,26 +4,40 @@
  * Apply color settings.
  */
 function post_color_css() {
-    $css = "";
+    $CSS = "";
 
-    foreach ( get_pages( array( 'post_status' => 'draft,pending,publish' ) ) as $post ) {
-        if ( ! $color = get_post_meta( $post->ID, '_post-color', true ) ) continue;
-        if ( ! array_filter( $color ) ) continue;
+	// query all posts with set colors
+	if ( !($query = new WP_Query( array(
+		'post_type' => post_color_setting( 'post-types' ),
+		'post_status' => 'draft,pending,publish',
+		'meta_query' => array(
+			array(
+				'key' => '_post-color',
+				'compare' => 'EXISTS'
+			),
+		)
+	) ))->have_posts() ) return;
 
-        $css .= "#post-{$post->ID} {
-            background-color: " . $color['background'] . ";
-            color: " . $color['text'] . ";
+	// loop through posts
+	foreach ( $query->posts as $post ) {
+		$color = get_post_meta( $post->ID, '_post-color', true );
+		if ( ! ($color = array_filter( $color )) ) continue;
+
+		// ... and add color CSS
+		$CSS .= "#post-{$post->ID} {
+            " . ( !empty($color['background']) ? "background-color: " . $color['background'] : '' ) . ";
+            " . ( !empty($color['text']) ? "color: " . $color['text'] : '' ) . ";
         }";
     }
 
     // minify css
-    $css = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $css ); // negative look ahead
-	$css = preg_replace('/\s{2,}/', ' ', $css );
-	$css = preg_replace('/\s*([:;{}])\s*/', '$1', $css );
-	$css = preg_replace('/;}/', '}', $css );
+	$CSS = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $CSS ); // negative look ahead
+	$CSS = preg_replace('/\s{2,}/', ' ', $CSS );
+	$CSS = preg_replace('/\s*([:;{}])\s*/', '$1', $CSS );
+	$CSS = preg_replace('/;}/', '}', $CSS );
 
-	if ( ! $css ) return; ?>
+	if ( ! $CSS ) return; ?>
 
-    <style type="text/css" id="post-color-css"><?php echo $css; ?></style>
+    <style type="text/css" id="post-color-css"><?php echo $CSS; ?></style>
 <?php }
 add_action( 'wp_head', 'post_color_css' );
