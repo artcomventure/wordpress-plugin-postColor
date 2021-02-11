@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.6 - 2021-02-11
+**Fixed**
+
+* Post query (no limit).
+
 ## 1.0.5 - 2021-02-11
 **Fixed**
 

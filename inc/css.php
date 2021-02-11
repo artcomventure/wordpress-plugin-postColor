@@ -10,6 +10,7 @@ function post_color_css() {
 	if ( !($query = new WP_Query( array(
 		'post_type' => post_color_setting( 'post-types' ),
 		'post_status' => 'draft,pending,publish',
+		'posts_per_page' => -1,
 		'meta_query' => array(
 			array(
 				'key' => '_post-color',
