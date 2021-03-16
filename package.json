@@ -1,15 +1,16 @@
 {
   "name": "post-color",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Set post's text and background color",
   "author": "stefan.kaesche@artcom-venutre.de",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
   "scripts": {
     "start": "wp-scripts start & npm run watch & gulp",
-    "build": "(wp-scripts build && npm run compile:css) && gulp build && gulp po2mo",
+    "build": "(wp-scripts build && npm run compile:css) && gulp po2mo && gulp build",
     "watch": "node-sass css/ -o css/ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass css/ -o css/ --output-style compressed"
+    "compile:css": "node-sass css/ -o css/ --output-style compressed",
+    "make-pot": "wp i18n make-pot . languages/post-color.pot --exclude=dist,build --package-name=\"Post Color\""
   },
   "devDependencies": {
     "@wordpress/scripts": "^12.1.0",

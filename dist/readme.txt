@@ -45,6 +45,15 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
 == Changelog ==
 
+= 1.0.7 - 2021-03-16 =
+**Removed**
+
+* Custom Bogo fix (https://wordpress.org/support/topic/gutenberg-updating-failed-with-custom-post-meta/).
+
+**Added**
+
+* Make POT file via WP CLI.
+
 = 1.0.6 - 2021-02-11 =
 **Fixed**
 

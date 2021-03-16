@@ -4,7 +4,7 @@
  * Plugin Name: Post Color
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-postColor
  * Description: Set specific colors for each and every post/page.
- * Version: 1.0.6
+ * Version: 1.0.7
  * Text Domain: post-color
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -55,5 +55,4 @@ add_filter( 'plugin_row_meta', function( $links, $file ) {
 // include inc files
 require POST_COLOR_DIRECTORY . '/inc/settings.php';
 require POST_COLOR_DIRECTORY . '/inc/gutenberg.php';
-require POST_COLOR_DIRECTORY . '/inc/bogo.php';
 require POST_COLOR_DIRECTORY . '/inc/css.php';

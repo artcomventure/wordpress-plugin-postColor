@@ -1,45 +1,76 @@
 # Copyright (C) 2021 artcom venture GmbH
-# This file is distributed under the MIT License.
+# This file is distributed under the same license as the Post Color plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Post Color\n"
-"Report-Msgid-Bugs-To: info@artcom-venture.de\n"
+"Project-Id-Version: Post Color 1.0.6\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wordpress-plugin-postColor\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"Language-Team: artcom venture GmbH <info@artcom-venture.de>\n"
-"Language: de_DE\n"
+"POT-Creation-Date: 2021-03-16T07:10:58+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: post-color\n"
 
-msgid "Add color"
-msgstr ""
-
-msgid "Background Colors"
-msgstr ""
-
-msgid "<i>Empty</i> the color to erase it. Any changes here has no effect on the colors already selected in posts/pages."
-msgstr ""
-
+#. Plugin Name of the plugin
 msgid "Post Color"
 msgstr ""
 
+#. Plugin URI of the plugin
+msgid "https://github.com/artcomventure/wordpress-plugin-postColor"
+msgstr ""
+
+#. Description of the plugin
+msgid "Set specific colors for each and every post/page."
+msgstr ""
+
+#. Author of the plugin
+msgid "artcom venture GmbH"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://www.artcom-venture.de/"
+msgstr ""
+
+#: inc/settings.page.php:4
 msgid "Post Color Settings"
 msgstr ""
 
-msgid "Post Color"
-msgstr ""
-
+#: inc/settings.page.php:14
 msgid "Post Types"
 msgstr ""
 
+#: inc/settings.page.php:30
 msgid "Select the posts types where the editor should have the possibility to set the post color.<br />You can also leave all checkboxes unchecked to enable it for all."
 msgstr ""
 
-msgid "Set specific colors for each and every post."
+#: inc/settings.page.php:37
+msgid "Background Colors"
 msgstr ""
 
+#: inc/settings.page.php:44
+#: inc/settings.page.php:46
+#: inc/settings.page.php:63
+#: inc/settings.page.php:65
+msgid "Add color"
+msgstr ""
+
+#: inc/settings.page.php:50
+#: inc/settings.page.php:69
+msgid "<i>Empty</i> the color to erase it. Any changes here has no effect on the colors already selected in posts/pages."
+msgstr ""
+
+#: inc/settings.page.php:56
 msgid "Text Colors"
 msgstr ""
 
+#: inc/settings.page.php:79
 msgid "The editor can choose individual colors."
+msgstr ""
+
+#: inc/settings.php:16
+#: inc/settings.php:17
+msgid "Post Colors"
 msgstr ""

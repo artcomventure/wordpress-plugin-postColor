@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.7 - 2021-03-16
+**Removed**
+
+* Custom Bogo fix (https://wordpress.org/support/topic/gutenberg-updating-failed-with-custom-post-meta/).
+
+**Added**
+
+* Make POT file via WP CLI.
+
 ## 1.0.6 - 2021-02-11
 **Fixed**
 
