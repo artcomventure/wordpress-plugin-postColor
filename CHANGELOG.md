@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.8 - 2021-03-19
+**Fixed**
+
+* Remove omitted `style` type attribute.
+
 ## 1.0.7 - 2021-03-16
 **Removed**
 

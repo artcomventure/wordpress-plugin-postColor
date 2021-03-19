@@ -45,6 +45,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
 == Changelog ==
 
+= 1.0.8 - 2021-03-19 =
+**Fixed**
+
+* Remove omitted `style` type attribute.
+
 = 1.0.7 - 2021-03-16 =
 **Removed**
 

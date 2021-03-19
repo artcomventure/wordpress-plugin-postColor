@@ -4,7 +4,7 @@
  * Plugin Name: Post Color
  * Plugin URI: https://github.com/artcomventure/wordpress-plugin-postColor
  * Description: Set specific colors for each and every post/page.
- * Version: 1.0.7
+ * Version: 1.0.8
  * Text Domain: post-color
  * Author: artcom venture GmbH
  * Author URI: http://www.artcom-venture.de/
@@ -28,16 +28,15 @@ add_action( 'plugins_loaded', 'post_color_t9n' );
 
 /**
  * Since this plugin is not listed on https://wordpress.org/plugins/
- * we remove any update notification due to _name overlaps_.
+ * we remove any update notification in case of _name overlaps_.
  */
-function post_color_remove_update_notification( $value ) {
-	if ( isset( $value->response[__FILE__] ) ) {
-		unset( $value->response[__FILE__] );
-	}
+add_filter( 'site_transient_update_plugins', function( $value ) {
+    if ( isset( $value->response[$plugin_file = plugin_basename( __FILE__ )] ) ) {
+        unset( $value->response[$plugin_file] );
+    }
 
-	return $value;
-}
-add_filter( 'site_transient_update_plugins', 'post_color_remove_update_notification' );
+    return $value;
+} );
 
 /**
  * Change details link to GitHub repository.

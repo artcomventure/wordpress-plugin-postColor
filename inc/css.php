@@ -39,6 +39,6 @@ function post_color_css() {
 
 	if ( ! $CSS ) return; ?>
 
-    <style type="text/css" id="post-color-css"><?php echo $CSS; ?></style>
+    <style id="post-color-inline-css"><?php echo $CSS; ?></style>
 <?php }
 add_action( 'wp_head', 'post_color_css' );
