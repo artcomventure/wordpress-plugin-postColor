@@ -1,6 +1,6 @@
 {
   "name": "post-color",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Set post's text and background color",
   "license": "GPL-2.0-or-later",
   "main": "build/index.js",
@@ -9,7 +9,7 @@
     "build": "(wp-scripts build && npm run compile:css) && gulp po2mo && gulp build",
     "watch": "node-sass css/ -o css/ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
     "compile:css": "node-sass css/ -o css/ --output-style compressed",
-    "make-pot": "wp i18n make-pot . languages/post-color.pot --exclude=dist,build --package-name=\"Post Color\""
+    "make-pot": "wp i18n make-pot . languages/post-color.pot --exclude=dist,src"
   },
   "devDependencies": {
     "@wordpress/scripts": "^12.1.0",

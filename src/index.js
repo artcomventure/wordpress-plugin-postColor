@@ -138,8 +138,8 @@ const PostColorPanel = () => {
             title={ __( 'Color settings' ) }
             className="post-color"
         >
-            <PostColorControl scope="background" label={ __( 'Background Color' ) } />
-            <PostColorControl scope="text" label={ __( 'Text Color' ) } />
+            { (!!settings.custom || !!settings.background.length) && <PostColorControl scope="background" label={__('Background Color')}/> }
+            { (!!settings.custom || !!settings.text.length) && <PostColorControl scope="text" label={__('Text Color')}/> }
         </PluginDocumentSettingPanel>
     );
 };

@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.9 - 2021-04-20
+**Fixed**
+
+* En-/disable color editor according to settings.
+
 ## 1.0.8 - 2021-03-19
 **Fixed**
 
