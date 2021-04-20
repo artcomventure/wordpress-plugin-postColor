@@ -13,7 +13,6 @@ function post_color_register() {
         $asset_file['dependencies'],
         $asset_file['version']
     );
-    wp_localize_script( 'post-color-js', 'settings', post_color_settings() );
 
     wp_register_style(
         'post-color-css',
@@ -57,3 +56,27 @@ function post_color_register() {
         );
 }
 add_action( 'init', 'post_color_register', 1982 );
+
+function post_color_rest() {
+    register_rest_route('post-color/v1', '/getSettings', [
+        'method' => 'GET',
+        'permission_callback' => function () {
+            return current_user_can('edit_posts' );
+        },
+        'callback' => function( $data ) {
+            return rest_ensure_response( post_color_settings( $data['setting']||null ) );
+        }
+    ] );
+
+
+    register_rest_route('post-color/v1', '/getSetting/(?P<setting>.+)', [
+        'method' => 'GET',
+        'permission_callback' => function () {
+            return current_user_can('edit_posts' );
+        },
+        'callback' => function( $data ) {
+            return rest_ensure_response( post_color_setting( $data['setting'] ) );
+        }
+    ] );
+}
+add_action( 'rest_api_init', 'post_color_rest' );

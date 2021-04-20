@@ -4,6 +4,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/edit-post';
 import { ColorPalette, ColorIndicator, BaseControl } from "@wordpress/components";
 import { select, useSelect, withSelect, withDispatch } from '@wordpress/data';
+import apiFetch from '@wordpress/api-fetch';
 
 // get all used colors
 const getPostColors = ( scope, color ) => {
@@ -144,7 +145,13 @@ const PostColorPanel = () => {
     );
 };
 
-registerPlugin( 'post-color', {
-    render: PostColorPanel,
-    icon: 'art'
+let settings = {}
+// get plugin settings first
+apiFetch( { path: 'post-color/v1/getSettings' } ).then( ( postColorSettings ) => {
+    settings = postColorSettings
+
+    registerPlugin( 'post-color', {
+        render: PostColorPanel,
+        icon: 'art'
+    } );
 } );

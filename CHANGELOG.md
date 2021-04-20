@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.10 - 2021-04-20
+**Fixed**
+
+* Get settings the REST way.
+
 ## 1.0.9 - 2021-04-20
 **Fixed**
 
