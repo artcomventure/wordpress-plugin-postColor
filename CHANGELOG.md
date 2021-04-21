@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.11 - 2021-04-21
+**Fixed**
+
+* Set color for page for posts.
+
 ## 1.0.10 - 2021-04-20
 **Fixed**
 

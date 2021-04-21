@@ -63,8 +63,8 @@ function post_color_rest() {
         'permission_callback' => function () {
             return current_user_can('edit_posts' );
         },
-        'callback' => function( $data ) {
-            return rest_ensure_response( post_color_settings( $data['setting']||null ) );
+        'callback' => function() {
+            return rest_ensure_response( post_color_settings() );
         }
     ] );
 

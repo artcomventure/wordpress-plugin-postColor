@@ -143,7 +143,7 @@ const PostColorPanel = () => {
             { (!!settings.custom || !!settings.text.length) && <PostColorControl scope="text" label={__('Text Color')}/> }
         </PluginDocumentSettingPanel>
     );
-};
+}
 
 let settings = {}
 // get plugin settings first
@@ -154,4 +154,4 @@ apiFetch( { path: 'post-color/v1/getSettings' } ).then( ( postColorSettings ) =>
         render: PostColorPanel,
         icon: 'art'
     } );
-} );
+} )

@@ -24,8 +24,12 @@ function post_color_css() {
 		$color = get_post_meta( $post->ID, '_post-color', true );
 		if ( ! ($color = array_filter( $color )) ) continue;
 
-		// ... and add color CSS
-		$CSS .= "#post-{$post->ID} {
+        $selector = ["#post-{$post->ID}"];
+        // page for posts
+        if ( $post->ID == get_option( 'page_for_posts' ) ) $selector[] = 'body.blog.home';
+
+        // ... and add color CSS
+        $CSS .= implode( ', ', $selector ) . " {
             " . ( !empty($color['background']) ? "background-color: " . $color['background'] : '' ) . ";
             " . ( !empty($color['text']) ? "color: " . $color['text'] : '' ) . ";
         }";
