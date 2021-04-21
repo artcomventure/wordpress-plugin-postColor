@@ -26,7 +26,8 @@ function post_color_css() {
 
         $selector = ["#post-{$post->ID}"];
         // page for posts
-        if ( $post->ID == get_option( 'page_for_posts' ) ) $selector[] = 'body.blog.home';
+        if ( $post->ID == get_option( 'page_for_posts' ) )
+            $selector = array_merge( $selector, array( 'body.blog', 'body.blog.custom-background' ) );
 
         // ... and add color CSS
         $CSS .= implode( ', ', $selector ) . " {
