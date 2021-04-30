@@ -45,6 +45,11 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
 == Changelog ==
 
+= 1.1.1 - 2021-04-30 =
+**Fixed**
+
+* Editor color set.
+
 = 1.1.0 - 2021-04-30 =
 **Added**
 

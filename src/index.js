@@ -52,8 +52,8 @@ const changeEditorStyle = ( color, scope ) => {
     if ( !!color ) {
         $sheet = document.createElement('style' );
         $sheet.id = sheet_id;
-        $sheet.innerHTML = '.edit-post-visual-editor { ' + (scope === 'background' ? 'background-' : '') + 'color: ' + color + '; }';
-        // if ( scope === 'text' ) $sheet.innerHTML += "\n.edit-post-visual-editor textarea { color: " + color + " !important; }";
+        $sheet.innerHTML = '.editor-styles-wrapper { ' + (scope === 'background' ? 'background-' : '') + 'color: ' + color + '; }';
+        // if ( scope === 'text' ) $sheet.innerHTML += "\n.editor-styles-wrapper textarea { color: " + color + " !important; }";
         document.body.appendChild( $sheet );
     }
 }
