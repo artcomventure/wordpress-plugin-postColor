@@ -45,6 +45,16 @@ _We test our plugin through its paces, but we advise you to take all safety prec
 Don't hesitate! [Issues](https://github.com/artcomventure/wordpress-plugin-postColor/issues) welcome.
 == Changelog ==
 
+= 1.1.0 - 2021-04-30 =
+**Added**
+
+* Set colors also for blocks.
+
+= 1.0.12 - 2021-04-26 =
+**Fixed**
+
+* Set color to body.
+
 = 1.0.11 - 2021-04-21 =
 **Fixed**
 

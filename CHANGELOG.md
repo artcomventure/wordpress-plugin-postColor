@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.1.0 - 2021-04-30
+**Added**
+
+* Set colors also for blocks.
+
+## 1.0.12 - 2021-04-26
+**Fixed**
+
+* Set color to body.
+
 ## 1.0.11 - 2021-04-21
 **Fixed**
 

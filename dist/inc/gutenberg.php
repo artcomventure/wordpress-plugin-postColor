@@ -80,3 +80,15 @@ function post_color_rest() {
     ] );
 }
 add_action( 'rest_api_init', 'post_color_rest' );
+
+add_action( 'after_setup_theme', 'post_color_block_colors', 11 );
+function post_color_block_colors() {
+    $settings = post_color_settings();
+
+    if ( !$settings['block'] || !$settings['custom'] )
+        add_theme_support( 'disable-custom-colors' );
+
+    add_theme_support( 'editor-color-palette', $settings['block'] ? array_map( function( $hex ) {
+        return array( 'name' => $hex, 'slug' => ltrim( $hex, '#' ), 'color' => $hex );
+    }, post_color_setting( 'colors' ) ) : [] );
+}

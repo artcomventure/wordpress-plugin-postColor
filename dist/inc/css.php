@@ -25,9 +25,10 @@ function post_color_css() {
 		if ( ! ($color = array_filter( $color )) ) continue;
 
         $selector = ["#post-{$post->ID}"];
-        // page for posts
-        if ( $post->ID == get_option( 'page_for_posts' ) )
-            $selector = array_merge( $selector, array( 'body.blog', 'body.blog.custom-background' ) );
+        // add post color to body!?
+        if ( apply_filters( 'add-post-color-to-body', $post->ID == get_the_ID() || (is_home() && $post->ID == get_option( 'page_for_posts' )), $post->ID ) )
+            // `html` prefix to override without `!important` flag
+            $selector = array_merge( $selector, array( 'html body', 'html body.custom-background' ) );
 
         // ... and add color CSS
         $CSS .= implode( ', ', $selector ) . " {
@@ -35,6 +36,16 @@ function post_color_css() {
             " . ( !empty($color['text']) ? "color: " . $color['text'] : '' ) . ";
         }";
     }
+
+	if ( post_color_setting( 'block' ) )
+        foreach ( post_color_setting( 'colors' ) as $color ) {
+            $selector = ltrim( strtolower( $color ), '#' );
+            preg_match_all('/(?:[0-9]+|[a-zA-Z]+)/', $selector, $selector );
+            $selector = implode( '-', $selector[0] );
+
+            $CSS .= ".has-text-color.has-{$selector}-color { color: {$color} }";
+            $CSS .= ".has-background.has-{$selector}-background-color { background-color: {$color} }";
+        }
 
     // minify css
 	$CSS = preg_replace('/\/\*((?!\*\/).)*\*\//', '', $CSS ); // negative look ahead

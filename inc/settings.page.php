@@ -80,6 +80,16 @@
 				</td>
 			</tr>
 
+			<tr valign="top">
+				<th scope="row">
+					<?php _e( 'Block colors', 'post-color' ); ?>
+				</th>
+				<td>
+                    <input type="checkbox" value="1" name="post-color[block]"<?php checked( '1', $settings['block'] ); ?> />
+                    <?php _e( "Apply these settings also to the editor's block colors.", 'post-color' ); ?>
+				</td>
+			</tr>
+
 			</tbody>
 		</table>
 

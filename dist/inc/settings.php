@@ -36,13 +36,17 @@ function post_color_settings( $setting = null ) {
 		'post-types' => [],
 		'background' => [],
 		'text' => [],
-		'custom' => ''
+		'custom' => '',
+		'block' => ''
 	);
 
 	if ( !$settings['post-types'] )
         $settings['post-types'] = array_column( post_color_available_post_types(), 'name' );
 
 	if ( $setting ) {
+	    if ( $setting == 'colors' )
+	        return array_unique( array_merge( $settings['background'], $settings['text'] ) );
+
 		if ( isset($settings[$setting]) ) return $settings[$setting];
 		return null;
 	}
