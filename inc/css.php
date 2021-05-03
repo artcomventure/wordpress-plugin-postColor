@@ -17,12 +17,9 @@ function post_color_css() {
 				'compare' => 'EXISTS'
 			),
 		)
-	) ))->have_posts() ) return;
-
-	// loop through posts
-	foreach ( $query->posts as $post ) {
-		$color = get_post_meta( $post->ID, '_post-color', true );
-		if ( ! ($color = array_filter( $color )) ) continue;
+	) ))->have_posts() ) foreach ( $query->posts as $post ) {
+        $color = get_post_meta( $post->ID, '_post-color', true );
+        if ( ! ($color = array_filter( $color )) ) continue;
 
         $selector = ["#post-{$post->ID}"];
         // add post color to body!?
