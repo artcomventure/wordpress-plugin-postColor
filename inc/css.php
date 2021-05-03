@@ -7,7 +7,7 @@ function post_color_css() {
     $CSS = "";
 
 	// query all posts with set colors
-	if ( !($query = new WP_Query( array(
+	if ( ($query = new WP_Query( array(
 		'post_type' => post_color_setting( 'post-types' ),
 		'post_status' => 'draft,pending,publish',
 		'posts_per_page' => -1,
